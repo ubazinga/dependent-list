@@ -19,14 +19,14 @@
 		</section>
 		<section class="main-content">
 			<h3>
-				<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.
+				<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependent list demo one
 			</h3>
 			
 			<p>
 				<select id="parent-select">
 					<option value="group-1">parent option 1</option>
 					<option value="group-2">parent option 2</option>
-					<option value="group-3">parent option 2</option>
+					<option value="group-3">parent option 3</option>
 				</select>
 
 				<select class="dependent-list" id="child-select-1" data-depends="#parent-select">
@@ -40,6 +40,94 @@
 					<option value="group-6" data-group="group-3">child 6, parent 3</option>
 				</select>
 			</p>
+
+			<h1>Code demo one</h1>
+
+			<pre>
+&lt;select class="demo-2" id="parent-select-demo-2"&gt;
+	&lt;option value="group-1"&gt;parent option 1&lt;/option&gt;
+	&lt;option value="group-2"&gt;parent option 2&lt;/option&gt;
+	&lt;option value="group-3"&gt;parent option 3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select class="demo-2 dependent-list" id="child-select-1-demo-2" data-depends="#parent-select-demo-2"&gt;
+	&lt;option value="group-1" data-group="group-1"&gt;child 1, parent 1&lt;/option&gt;
+	&lt;option value="group-2" data-group="group-1"&gt;child 2, parent 1&lt;/option&gt;
+
+	&lt;option value="group-3" data-group="group-2"&gt;child 3, parent 2&lt;/option&gt;
+	&lt;option value="group-4" data-group="group-2"&gt;child 4, parent 2&lt;/option&gt;
+
+	&lt;option value="group-5" data-group="group-3"&gt;child 5, parent 3&lt;/option&gt;
+	&lt;option value="group-6" data-group="group-3"&gt;child 6, parent 3&lt;/option&gt;
+&lt;/select&gt;
+			</pre>
+
+
+			<h3>
+				<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependent list demo two
+			</h3>
+			
+			<p>
+				<select class="demo-2" id="parent-select-demo-2" size="5">
+					<option value="group-1">parent option 1</option>
+					<option value="group-2">parent option 2</option>
+					<option value="group-3">parent option 3</option>
+				</select>
+
+				<select class="demo-2 dependent-list" id="child-select-1-demo-2" size="5" data-depends="#parent-select-demo-2">
+					<option value="group-1" data-group="group-1">child 1, parent 1</option>
+					<option value="group-2" data-group="group-1">child 2, parent 1</option>
+
+					<option value="group-3" data-group="group-2">child 3, parent 2</option>
+					<option value="group-4" data-group="group-2">child 4, parent 2</option>
+
+					<option value="group-5" data-group="group-3">child 5, parent 3</option>
+					<option value="group-6" data-group="group-3">child 6, parent 3</option>
+				</select>
+
+				<select class="demo-2 dependent-list" id="child-select-2-demo-2" size="5" data-depends="#child-select-1-demo-2">
+					<option value="group-1" data-group="group-1">child 1, parent 1</option>
+					<option value="group-2" data-group="group-1">child 2, parent 1</option>
+
+					<option value="group-3" data-group="group-2">child 3, parent 2</option>
+					<option value="group-4" data-group="group-2">child 4, parent 2</option>
+
+					<option value="group-5" data-group="group-3">child 5, parent 3</option>
+					<option value="group-6" data-group="group-3">child 6, parent 3</option>
+				</select>
+			</p>
+
+			<h1>Code demo two</h1>
+
+			<pre>
+&lt;select class="demo-2" id="parent-select-demo-2" size="5"&gt;
+	&lt;option value="group-1"&gt;parent option 1&lt;/option&gt;
+	&lt;option value="group-2"&gt;parent option 2&lt;/option&gt;
+	&lt;option value="group-3"&gt;parent option 3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select class="demo-2 dependent-list" id="child-select-1-demo-2" size="5" data-depends="#parent-select-demo-2"&gt;
+	&lt;option value="group-1" data-group="group-1"&gt;child 1, parent 1&lt;/option&gt;
+	&lt;option value="group-2" data-group="group-1"&gt;child 2, parent 1&lt;/option&gt;
+
+	&lt;option value="group-3" data-group="group-2"&gt;child 3, parent 2&lt;/option&gt;
+	&lt;option value="group-4" data-group="group-2"&gt;child 4, parent 2&lt;/option&gt;
+
+	&lt;option value="group-5" data-group="group-3"&gt;child 5, parent 3&lt;/option&gt;
+	&lt;option value="group-6" data-group="group-3"&gt;child 6, parent 3&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;select class="demo-2 dependent-list" id="child-select-2-demo-2" size="5" data-depends="#child-select-1-demo-2"&gt;
+	&lt;option value="group-1" data-group="group-1"&gt;child 1, parent 1&lt;/option&gt;
+	&lt;option value="group-2" data-group="group-1"&gt;child 2, parent 1&lt;/option&gt;
+
+	&lt;option value="group-3" data-group="group-2"&gt;child 3, parent 2&lt;/option&gt;
+	&lt;option value="group-4" data-group="group-2"&gt;child 4, parent 2&lt;/option&gt;
+
+	&lt;option value="group-5" data-group="group-3"&gt;child 5, parent 3&lt;/option&gt;
+	&lt;option value="group-6" data-group="group-3"&gt;child 6, parent 3&lt;/option&gt;
+&lt;/select&gt;
+			</pre>
 
 			<script src="https://cdn.rawgit.com/ubazinga/dependent-list/master/app/common.js"></script>
 			<script>
