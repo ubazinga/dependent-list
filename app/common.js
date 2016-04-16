@@ -45,7 +45,6 @@ var DependentSourceSelect = (function () {
         this.trigger(this.element);
     };
     DependentSourceSelect.prototype.trigger = function (element) {
-        console.info('change', element);
         if ("createEvent" in document) {
             var evt = document.createEvent("HTMLEvents");
             evt.initEvent("change", false, true);
@@ -71,7 +70,6 @@ var DependentTargetSelect = (function () {
         });
     };
     DependentTargetSelect.prototype.selectFirstOption = function () {
-        console.info(this.element.selectedIndex, this.element);
         if (this.element.selectedIndex == -1 && this.element.length > 0) {
             this.element.selectedIndex = 0;
         }
@@ -79,5 +77,3 @@ var DependentTargetSelect = (function () {
     };
     return DependentTargetSelect;
 }());
-// Invoking
-// Сause 

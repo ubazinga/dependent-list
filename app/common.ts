@@ -70,8 +70,6 @@ class DependentSourceSelect {
 	}
 
 	trigger(element) {
-		console.info('change', element);
-
 		if ("createEvent" in document) {
 			var evt = document.createEvent("HTMLEvents");
 			evt.initEvent("change", false, true);
@@ -104,7 +102,6 @@ class DependentTargetSelect {
 	}
 
 	selectFirstOption() {
-		console.info(this.element.selectedIndex, this.element);
 		if (this.element.selectedIndex == -1 && this.element.length > 0) {
 			this.element.selectedIndex = 0;
 		}
@@ -112,6 +109,3 @@ class DependentTargetSelect {
 		this.source.trigger(this.element);
 	}
 }
-
-// Invoking
-// Сause
