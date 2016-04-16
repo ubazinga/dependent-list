@@ -14,7 +14,7 @@ Parent list `id="select1"` or `class="select1"`
 </select>
 ```
 
-To the child list add `class="dependent-list"` and `data-depends="#select1"` or `data-depends=".select1"`
+To child list add `class="dependent-list"` and `data-depends="#select1"` or `data-depends=".select1"`
 ``` html
 <select size="5" class="dependent-list" data-depends="#select1" id="select2">
   <option value="1" data-group="group-1">select 1 -> 1</option>
