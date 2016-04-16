@@ -1,5 +1,7 @@
 ## Dependent list / Зависимый список ##
 
+**[DEMO](http://ubazinga.github.io/dependent-list/ "demo")**
+
 ![](https://habrastorage.org/files/020/890/188/0208901887e7470d9d468cfef80c94f9.gif)
 
 ## How to use
