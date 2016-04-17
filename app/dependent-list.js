@@ -16,42 +16,100 @@ var DependentSourceSelect = (function () {
         if (('depends' in this.element.dataset) !== true) {
             throw new Error("Depending not set");
         }
+        this.prepareOptions();
         new DependentTargetSelect(this.element.dataset.depends, this);
     }
+    DependentSourceSelect.prototype.prepareOptions = function () {
+        var _this = this;
+        var options = this.element.options;
+        if (options.length > 0) {
+            [].forEach.call(options, function (option, index) {
+                option.addEventListener('click', _this.setSelectedOption.bind(_this));
+            });
+        }
+    };
     DependentSourceSelect.prototype.setVisibleOptions = function (targetValue) {
-        var visibleOptions = [];
         [].forEach.call(this.element.options, function (option, index) {
             option.style.display = 'none';
+            option.classList.remove('option-visible');
+            if (option.selected && !('selected' in option.dataset)) {
+                option.dataset.selected = true;
+            }
             if (option.dataset.group == targetValue) {
-                visibleOptions.push(option);
                 option.style.display = 'block';
+                option.classList.add('option-visible');
+            }
+            option.removeAttribute('selected');
+        });
+        this.selectFirstOption();
+    };
+    DependentSourceSelect.prototype.setSelectedOption = function (event) {
+        var visibleOptions = this.getVisibleOptions();
+        [].forEach.call(visibleOptions, function (option, index) {
+            option.removeAttribute('selected');
+            option.selected = false;
+            option.dataset.selected = false;
+            if (event.srcElement == option) {
+                option.selected = true;
+                option.dataset.selected = true;
             }
         });
-        this.selectFirstOption(visibleOptions);
     };
-    DependentSourceSelect.prototype.selectFirstOption = function (options) {
+    DependentSourceSelect.prototype.getSelectedOption = function () {
+        var _this = this;
+        var selectedOption = false, visibleOptions = this.getVisibleOptions();
+        [].forEach.call(visibleOptions, function (option, index) {
+            if (_this.isOptionSelected(option)) {
+                selectedOption = option;
+            }
+        });
+        return selectedOption;
+    };
+    DependentSourceSelect.prototype.getVisibleOptions = function () {
+        return this.element.querySelectorAll('.option-visible');
+    };
+    DependentSourceSelect.prototype.isOptionSelected = function (option) {
+        if (option.selected == true || ('selected' in option.dataset && option.dataset.selected == 'true')) {
+            return true;
+        }
+        return false;
+    };
+    DependentSourceSelect.prototype.haveSelected = function (options) {
+        var _this = this;
+        var haveSelected = false;
+        [].forEach.call(options, function (option, index) {
+            if (_this.isOptionSelected(option)) {
+                haveSelected = true;
+            }
+        });
+        return haveSelected;
+    };
+    DependentSourceSelect.prototype.selectFirstOption = function () {
+        var options = this.getVisibleOptions(), selectedOption = this.getSelectedOption();
         if (options.length > 0) {
-            if (this.element.selectedIndex == -1 && this.element.length > 0) {
+            if (selectedOption) {
+                selectedOption.selected = true;
+            }
+            else if (this.element.selectedIndex == -1 && this.element.length > 0) {
                 this.element.selectedIndex = 0;
             }
             else {
-                var visibleOption = options[0];
-                visibleOption.selected = true;
+                options[0].selected = true;
             }
         }
         else {
             this.element.selectedIndex = -1;
         }
-        this.trigger(this.element);
+        this.trigger('change', this.element);
     };
-    DependentSourceSelect.prototype.trigger = function (element) {
+    DependentSourceSelect.prototype.trigger = function (eventName, element) {
         if ("createEvent" in document) {
             var evt = document.createEvent("HTMLEvents");
-            evt.initEvent("change", false, true);
+            evt.initEvent(eventName, false, true);
             element.dispatchEvent(evt);
         }
         else {
-            element.fireEvent("onchange");
+            element.fireEvent("on" + eventName);
         }
     };
     return DependentSourceSelect;
@@ -73,7 +131,7 @@ var DependentTargetSelect = (function () {
         if (this.element.selectedIndex == -1 && this.element.length > 0) {
             this.element.selectedIndex = 0;
         }
-        this.source.trigger(this.element);
+        this.source.trigger('change', this.element);
     };
     return DependentTargetSelect;
 }());
