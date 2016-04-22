@@ -51,19 +51,21 @@ class DependentSourceSelect {
 
     setVisibleOptions(targetValue) {
         [].forEach.call(this.element.options, (option, index) => {
-            option.style.display = 'none';
-            option.classList.remove('option-visible');
+            if ('group' in option.dataset) {
+                option.style.display = 'none';
+                option.classList.remove('option-visible');
 
-            if (option.selected && !('selected' in option.dataset)) {
-                option.dataset.selected = true;
+                if (option.selected && !('selected' in option.dataset)) {
+                    option.dataset.selected = true;
+                }
+
+                if (option.dataset.group == targetValue) {
+                    option.style.display = 'block';
+                    option.classList.add('option-visible');
+                }
+
+                option.removeAttribute('selected');
             }
-
-            if (option.dataset.group == targetValue) {
-                option.style.display = 'block';
-                option.classList.add('option-visible');
-            }
-
-            option.removeAttribute('selected');
         });
 
         this.selectFirstOption();
