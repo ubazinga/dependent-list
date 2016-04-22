@@ -103,6 +103,12 @@ class DependentSourceSelect {
         return this.element.querySelectorAll('.option-visible');
     }
 
+    getAllVisibleOptions() {
+        return [].slice.call(this.element.options).filter(function(option) {
+            return option.style.display != 'none';
+        });
+    }
+
     isOptionSelected(option) {
         if (option.selected == true || ('selected' in option.dataset && option.dataset.selected == 'true')) {
             return true;
@@ -136,7 +142,14 @@ class DependentSourceSelect {
                 options[0].selected = true;
             }
         } else {
-            this.element.selectedIndex = -1;
+            var allVisibleOptions = this.getAllVisibleOptions();
+
+            if (allVisibleOptions.length > 0) {
+                this.element.selectedIndex = 0;
+                allVisibleOptions[0].selected = true;
+            } else {
+                this.element.selectedIndex = -1;
+            }
         }
 
         this.trigger('change', this.element);

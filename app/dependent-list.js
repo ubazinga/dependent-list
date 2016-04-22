@@ -70,6 +70,11 @@ var DependentSourceSelect = (function () {
     DependentSourceSelect.prototype.getVisibleOptions = function () {
         return this.element.querySelectorAll('.option-visible');
     };
+    DependentSourceSelect.prototype.getAllVisibleOptions = function () {
+        return [].slice.call(this.element.options).filter(function (option) {
+            return option.style.display != 'none';
+        });
+    };
     DependentSourceSelect.prototype.isOptionSelected = function (option) {
         if (option.selected == true || ('selected' in option.dataset && option.dataset.selected == 'true')) {
             return true;
@@ -100,7 +105,14 @@ var DependentSourceSelect = (function () {
             }
         }
         else {
-            this.element.selectedIndex = -1;
+            var allVisibleOptions = this.getAllVisibleOptions();
+            if (allVisibleOptions.length > 0) {
+                this.element.selectedIndex = 0;
+                allVisibleOptions[0].selected = true;
+            }
+            else {
+                this.element.selectedIndex = -1;
+            }
         }
         this.trigger('change', this.element);
     };
