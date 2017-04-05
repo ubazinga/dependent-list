@@ -4,7 +4,7 @@
 
 ![](https://habrastorage.org/files/020/890/188/0208901887e7470d9d468cfef80c94f9.gif)
 
-## How to use
+## How it use
 
 Parent list `id="select1"` or `class="select1"`
 
@@ -16,7 +16,7 @@ Parent list `id="select1"` or `class="select1"`
 </select>
 ```
 
-To the dependent list add `class="dependent-list"` and `data-depends="#select1"` or `data-depends=".select1"`
+Add in dependent list `class="dependent-list"` and selector `data-depends="#select1"` or `data-depends=".select1"`
 ``` html
 <select size="5" class="dependent-list" data-depends="#select1" id="select2">
   <option value="1" data-group="group-1">select 1 -> 1</option>
@@ -24,7 +24,7 @@ To the dependent list add `class="dependent-list"` and `data-depends="#select1"`
 </select>
 ```
 
-Ok, and init
+Ok, and just init 
 
 ``` javascript
 var dependentSelects = document.querySelectorAll('.dependent-list');
